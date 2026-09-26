@@ -1,0 +1,5 @@
+prog
+sim.vvp
+wave.vcd
+*.o
+verilog.v
