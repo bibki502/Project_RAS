@@ -18,7 +18,7 @@ void verilog (int N, const string& filename) {
     file << "   input wire clk," << endl;
     file << "   input wire ["<< N-1 << ":0] A," << endl;
     file << "   input wire ["<<N-1<<":0] B," << endl;
-    file << "   output reg ["<< 2*N-1<<":0] OUT" << endl;
+    file << "   output wire ["<< 2*N-1<<":0] OUT" << endl;
     file << ");" << endl;
 
     //Такт 1. Вычтсление А0, А1, В0, В1 и сумм
@@ -53,9 +53,7 @@ void verilog (int N, const string& filename) {
     file << "   end" << endl;
 
     file << "//Такт 3. Сборка ответа"<< endl;
-    file << "   always @(posedge clk) begin" << endl;
-    file << "       OUT <= (P1_r <<" << 2*n0 << ") + ((P2_r - P1_r - P0_r) << " << n0 << ") + P0_r;" << endl;
-    file << "   end" << endl;
+    file << "   assign OUT = (P1_r << " << 2*n0 << ") + ((P2_r - P1_r - P0_r) << " << n0 << ") + P0_r;\n";
 
     file << "endmodule" << endl;
 
